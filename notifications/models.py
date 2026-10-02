@@ -1,0 +1,4 @@
+from django.conf import settings
+from django.db import models
+class Notification(models.Model): user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE); title=models.CharField(max_length=160); message=models.TextField(); channel=models.CharField(max_length=12,default="in_app"); is_read=models.BooleanField(default=False); scheduled_for=models.DateTimeField(null=True,blank=True); sent_at=models.DateTimeField(null=True,blank=True); created_at=models.DateTimeField(auto_now_add=True)
+class NotificationPreference(models.Model): user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE); email_enabled=models.BooleanField(default=True); sms_enabled=models.BooleanField(default=False); budget_alerts=models.BooleanField(default=True); bill_reminders=models.BooleanField(default=True)
