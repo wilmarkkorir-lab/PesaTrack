@@ -32,6 +32,7 @@ MEDIA_ROOT=BASE_DIR/"media"
 DEFAULT_AUTO_FIELD="django.db.models.BigAutoField"
 REST_FRAMEWORK={"DEFAULT_AUTHENTICATION_CLASSES":["rest_framework_simplejwt.authentication.JWTAuthentication"],"DEFAULT_PERMISSION_CLASSES":["rest_framework.permissions.IsAuthenticated"],"DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination","PAGE_SIZE":30}
 CORS_ALLOWED_ORIGINS=[x.strip() for x in os.getenv("CORS_ALLOWED_ORIGINS","http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173,http://127.0.0.1:4173").split(",") if x.strip()]
+CORS_ALLOWED_ORIGIN_REGEXES=[r"https://pesa1-track-.*\.vercel\.app"]
 CORS_ALLOW_CREDENTIALS=True
 # Only allow all origins on local dev (not on the deployed server)
 if DEBUG and os.getenv("ALLOW_ALL_ORIGINS","false").lower()=="true": CORS_ALLOW_ALL_ORIGINS=True
