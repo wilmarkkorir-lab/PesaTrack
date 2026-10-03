@@ -12,7 +12,8 @@ class RegisterSerializer(serializers.ModelSerializer):
   user=User.objects.create_user(username=username,email=email,password=data["password"]); Profile.objects.create(user=user,full_name=name,currency=currency); return user
 class ProfileSerializer(serializers.ModelSerializer):
  email=serializers.EmailField(source="user.email",read_only=True)
- class Meta: model=Profile; fields=("full_name","email","currency","timezone","email_verified","created_at","updated_at"); read_only_fields=("email_verified","created_at","updated_at")
+ is_staff=serializers.BooleanField(source="user.is_staff",read_only=True)
+ class Meta: model=Profile; fields=("full_name","email","currency","timezone","email_verified","is_staff","created_at","updated_at"); read_only_fields=("email_verified","created_at","updated_at")
 class AdminUserSerializer(serializers.ModelSerializer):
  email=serializers.EmailField(source="user.email",read_only=True)
  username=serializers.CharField(source="user.username",read_only=True)
