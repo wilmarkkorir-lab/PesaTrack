@@ -1,10 +1,12 @@
+from django.http import HttpResponse
+
 class CorsMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
         if request.method == "OPTIONS":
-            response = __import__("django.http", fromlist=["HttpResponse"]).HttpResponse()
+            response = HttpResponse()
             self._set_headers(request, response)
             return response
         response = self.get_response(request)
