@@ -13,3 +13,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
  email=serializers.EmailField(source="user.email",read_only=True)
  class Meta: model=Profile; fields=("full_name","email","currency","timezone","email_verified","created_at","updated_at"); read_only_fields=("email_verified","created_at","updated_at")
+class AdminUserSerializer(serializers.ModelSerializer):
+ email=serializers.EmailField(source="user.email",read_only=True)
+ username=serializers.CharField(source="user.username",read_only=True)
+ is_active=serializers.BooleanField(source="user.is_active",read_only=True)
+ is_staff=serializers.BooleanField(source="user.is_staff",read_only=True)
+ last_login=serializers.DateTimeField(source="user.last_login",read_only=True)
+ class Meta: model=Profile; fields=("id","full_name","email","username","currency","is_active","is_staff","last_login","created_at")
